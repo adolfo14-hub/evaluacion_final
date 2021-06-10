@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area 3D</title>
+    <link href="index.html" rel="import" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.4/aframe/build/aframe-ar.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+   
+</head>
+<body>
+    <a-scene embedded arjs="debugUIEnabled: true;" vr-mode-ui="enabled: true">
+        <a-marker  preset="custom" type="pattern" id="marcador">
+            <a-box scale="1 1 1" id="entidad1">
+          </a-box>
+        </a-marker>
+        <a-entity camera ></a-entity>
+       </a-scene>
+
+     <script>
+
+
+        var virtual = top=document.cookie;
+            console.log(top);
+
+        var aum = (document.cookie.indexOf('n=') === -1 ? '' : ("; " + document.cookie).split('; n=')[1].split(';')[0]);
+        var molde = aum.substr(0, aum.lastIndexOf('Codigosqr')) || aum; 
+            console.log(molde);
+
+        var ado = document.querySelector('#entidad1');
+
+        ado.removeAttribute("gltf-model");
+        ado.setAttribute("gltf-model", molde);
+        ado.setAttribute("scale", '1 1 1');
+         
+         var enlace = (document.cookie.indexOf('r=') === -1 ? '' : ("; " + document.cookie).split('; r=')[1].split(';')[0]);
+         var enlace1 = enlace.substr(0, enlace.lastIndexOf('Codigosqr')) || enlace; 
+
+         var iv = document.querySelector('#marcador');
+
+         iv.removeAttribute("url");
+         iv.setAttribute("url", enlace1);
+         iv.setAttribute("animation-mixer", '');
+         console.log(enlace1);
+
+     </script>
+</body>
+
+</html>
